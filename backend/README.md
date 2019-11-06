@@ -1,19 +1,42 @@
+
 # Backend
+
+Using docker file
+
+***>cd to <repo_path>\predictive-health\backend***
+
+docker build -t myimage . 
+
+docker run -d --name mycontainer -p 5000:80 myimage
+
+
+
+Browse to: http://localhost:5000
+
 
 Using python flask 
 
 * Python 3.8.0
 
-* ```
+* ```pip install Flask-JSON
   pip install Flask
   ```
 
-* ```
+  ```
+  pip install Flask-Cors
+  ```
+  
+  ```
+  pip install Flask-RESTFul
+  ```
+  
+  ```
   pip install Flask-JSON
   ```
-
   
-
+* ```
+  pip install PyJWT
+  ```
   
 
 ## On windows machine:
