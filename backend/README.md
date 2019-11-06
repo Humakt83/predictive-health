@@ -1,5 +1,4 @@
 
-
 # Backend
 
 Using docker file
@@ -13,7 +12,6 @@ docker run -d --name mycontainer -p 5000:80 myimage
 
 
 Browse to: http://localhost:5000
-
 
 
 Using python flask 
@@ -39,7 +37,6 @@ Using python flask
 * ```
   pip install PyJWT
   ```
-
   
 
 ## On windows machine:
