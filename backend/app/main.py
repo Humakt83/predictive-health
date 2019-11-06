@@ -1,13 +1,13 @@
 from datetime import datetime
-from .middlewares import login_required
-from flask import Flask, json, request, redirect, url_for
-from flask_json import FlaskJSON, JsonError, json_response, as_json
+from middlewares import login_required
+from flask import Flask, request, redirect, url_for
+from flask_json import FlaskJSON, JsonError, json_response
 app = Flask(__name__)
 FlaskJSON(app)
 
 @app.route("/")
-def home():
-    return "Hello World!"
+def hello():
+    return "Hello World from Docker Flask"
 
 @app.route("/user", methods=["GET"])
 #@login_required
@@ -26,7 +26,7 @@ def create():
    #kudo = Kudo(g.user).create_kudo_for(github_repo)
    #return json_response(data=request.data)
    return redirect(url_for('users'))
-   
+
 @app.route("/user/<int:user_id>", methods=["PUT"])
 #@login_required
 def update_user(user_id):
@@ -39,7 +39,7 @@ def update_user(user_id):
    #if kudo_service.update_kudo_with(repo_id, github_repo):
    #  return json_response(github_repo.data)
    #else:
-     return json_response(error = 'user not found', status_ = 404)
+   return json_response(error = 'user not found', status_ = 404)
 
 @app.route("/user/<int:user_id>", methods=["DELETE"])
 #@login_required
@@ -50,9 +50,6 @@ def delete_user(user_id):
  #else:
    return json_response(error = 'user not found', status_ = 404)
 
-@app.route("/users", methods=["GET"])
-#@login_required
-def users():
-    now = datetime.utcnow()
-    return json_response(status_=200, time=now)
-
+if __name__ == "__main__":
+    # Only for debugging while developing
+    app.run(host='0.0.0.0', debug=True, port=80)
