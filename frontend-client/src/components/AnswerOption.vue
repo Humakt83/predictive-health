@@ -83,7 +83,6 @@ h2 {
     z-index: 5;
     font-size: 1rem;
     border-radius: 90px;
-    border: 5px solid $color2;
     font-weight: bolder;
     padding: 0 1rem;
     background-color: $color3;
