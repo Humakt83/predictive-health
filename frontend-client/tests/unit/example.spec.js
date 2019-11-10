@@ -5,7 +5,7 @@ describe('AnswerOption.vue', () => {
   it('renders props.msg when passed', () => {
     const name = 'Test'
     const wrapper = shallowMount(AnswerOption, {
-      propsData: { answerOption: {name} }
+      propsData: { section: name }
     })
     expect(wrapper.find('h2').text()).toMatch(name);
   })
