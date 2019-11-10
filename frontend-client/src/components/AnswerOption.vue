@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h2>{{answerOption.name}}</h2>
+  <div class="section-container">
+    <h2>{{section}}</h2>
     <div class="options-container">
-      <div class="option" :class="{'option--selected': option === selectedOption}" v-for="option in answerOption.options" v-bind:key="option" @click="selectOption(option)">
+      <div class="option" :class="{'option--selected': option === selectedOption}" v-for="option in options" v-bind:key="option" @click="selectOption(option)">
         <span>{{ option }}</span>
       </div>
     </div>
@@ -14,18 +14,20 @@
 export default {
   name: 'answer-option',
   props: {
-    answerOption: {
-      type: Object,
+    section: {
+      type: String,
     }
   },
   data: () => {
     return {
       selectedOption: undefined,
+      options: ['Daily', 'Weekly', 'Monthly', 'Never']
     }
   },
   methods: {
     selectOption(option) {
       this.selectedOption = option;
+      this.$emit('optionSelected', this.section, this.selectedOption);
     }
   }
 }
@@ -33,20 +35,24 @@ export default {
 
 <style scoped lang="scss">
 
-$option-width: 100px;
-$color: gray;
-$color2: aqua;
-$color3: aquamarine;
+@import "../_variables.scss";
 
+$option-width: 50px;
+
+.section-container {
+  max-width: 1200px;
+  margin: auto;
+}
 
 h2 {
   color: $color;
-  background-color: $color3;
+  background-color: $color2;
   padding: 0.5rem;
   border-radius: 90px;
-  width: 300px;
+  width: 200px;
   margin: auto;
   margin-bottom: -5px;
+  font-size: 1.2rem;
 }
 
 .options-container {
@@ -54,7 +60,7 @@ h2 {
   color: $color;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   &:before {
     content: '';
     background-color: $color3;
@@ -62,7 +68,7 @@ h2 {
     height: $option-width / 5;
     width: 100%;
     z-index: 0;
-    margin-top: $option-width / 4;
+    margin-top: $option-width / 3;
   }
   &:after {
     content: '';
@@ -71,34 +77,33 @@ h2 {
     height: $option-width / 5;
     width: 100%;
     z-index: 0;
-    margin-top: $option-width - ($option-width / 4);
+    margin-top: $option-width - ($option-width / 7);
   }
   .option {
     z-index: 5;
-    font-size: 1.5rem;
+    font-size: 1rem;
     border-radius: 90px;
-    border: 5px solid $color3;
     font-weight: bolder;
     padding: 0 1rem;
-    background-color: $color2;
+    background-color: $color3;
     width: $option-width;
     position: relative;
     cursor: pointer;
     &:before {
       content: '';
       display: block;
-      padding-top: $option-width / 2;
+      padding-top: $option-width / 1.75;
     }
     &:after {
       content: '';
       display: block;
-      padding-bottom: $option-width / 2;
+      padding-bottom: $option-width / 1.75;
     }
     &:hover {
       background-color: $color3;
     }
     &.option--selected {
-      background-color: $color3;
+      background-color: $color2;
     }
   }
 }
