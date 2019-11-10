@@ -27,6 +27,7 @@ export default {
   methods: {
     selectOption(option) {
       this.selectedOption = option;
+      this.$emit('optionSelected', this.section, this.selectedOption);
     }
   }
 }
@@ -34,10 +35,9 @@ export default {
 
 <style scoped lang="scss">
 
+@import "../_variables.scss";
+
 $option-width: 50px;
-$color: #07020d;
-$color2: #5ec2b7;
-$color3: #f1e9db;
 
 .section-container {
   max-width: 1200px;
@@ -46,7 +46,7 @@ $color3: #f1e9db;
 
 h2 {
   color: $color;
-  background-color: $color3;
+  background-color: $color2;
   padding: 0.5rem;
   border-radius: 90px;
   width: 200px;
