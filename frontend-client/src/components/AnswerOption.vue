@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>{{answerOption.name}}</h2>
+    <h2>{{section}}</h2>
     <div class="options-container">
-      <div class="option" :class="{'option--selected': option === selectedOption}" v-for="option in answerOption.options" v-bind:key="option" @click="selectOption(option)">
+      <div class="option" :class="{'option--selected': option === selectedOption}" v-for="option in options" v-bind:key="option" @click="selectOption(option)">
         <span>{{ option }}</span>
       </div>
     </div>
@@ -14,13 +14,14 @@
 export default {
   name: 'answer-option',
   props: {
-    answerOption: {
-      type: Object,
+    section: {
+      type: String,
     }
   },
   data: () => {
     return {
       selectedOption: undefined,
+      options: ['Daily', 'Weekly', 'Monthly', 'Never']
     }
   },
   methods: {
