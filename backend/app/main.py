@@ -56,7 +56,7 @@ def create():
 #@login_required
 def user_poll(user_id):
     all_poll = mongo.db.poll
-    poll = all_poll.find_one({'user': ObjectId(user_id) })
+    poll = all_poll.find_one({'user': user_id })
     if user is not None:
         return JSONEncoder().encode(poll)
     else:

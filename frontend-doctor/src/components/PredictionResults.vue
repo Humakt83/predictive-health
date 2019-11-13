@@ -3,6 +3,9 @@
     <p v-for="disease in prediction" :key="disease.name">
       {{ disease.name }} {{ disease.probability}} %
     </p>
+    <p>
+      {{ JSON.stringify(poll) }}
+    </p>
   </div>
 </template>
 
@@ -11,7 +14,7 @@ import {mapState} from 'vuex';
 export default {
   name: 'prediction-results',
   computed: {
-    ...mapState(['prediction'])
+    ...mapState(['prediction', 'poll'])
   }
 }
 </script>

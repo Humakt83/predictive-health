@@ -32,6 +32,7 @@ export default {
     getPrediction(event) {
       event.preventDefault();
       this.$store.dispatch('getPrediction', this.userId);
+      this.$store.dispatch('getPoll', this.userId);
     },
   }
 }
