@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import getPrediction from '@/api/prediction';
+import {getPrediction, getPoll} from '@/api/api';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    prediction: undefined
+    prediction: undefined,
+    poll: undefined
   },
   mutations: {
     setPrediction(state, prediction) {
       state.prediction = prediction;
+    },
+    setPollAnswers(state, poll) {
+      state.poll = poll;
     }
   },
   actions: {
@@ -26,6 +30,10 @@ export default new Vuex.Store({
         {name: 'Colorectal Cancer', probability: 60}
       ];
       context.commit('setPrediction', prediction);
+    },
+    getPoll: async (context, userId) => {
+      const poll = await getPoll(userId);
+      context.commit('setPollAnswers', poll.data);
     }
   },
 })
