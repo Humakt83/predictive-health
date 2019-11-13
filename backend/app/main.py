@@ -2,10 +2,11 @@ from datetime import datetime
 import json
 from bson import ObjectId
 from flask import Flask, g, request, redirect, url_for, jsonify, Response, abort
-
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.config["MONGO_URI"] = "mongodb://mongodb:27017/user"
 mongo = PyMongo(app)
@@ -55,7 +56,7 @@ def create():
 #@login_required
 def user_poll(user_id):
     all_poll = mongo.db.poll
-    poll = all_poll.find_one({'user_id': ObjectId(user_id) })
+    poll = all_poll.find_one({'user': ObjectId(user_id) })
     if user is not None:
         return JSONEncoder().encode(poll)
     else:
@@ -67,7 +68,6 @@ def user_poll(user_id):
 def create_poll(user_id):
     all_poll = mongo.db.poll
     data = request.json
-    data['user_id'] = ObjectId(user_id)
     poll_id = all_poll.insert(data)
     user_poll = all_poll.find_one({'_id': poll_id })
 
