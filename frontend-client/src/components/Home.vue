@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>PREDICTIVE HEALTH</h1>
-    <answer-option v-for="section in sections" :section="section" :key="section" @optionSelected="selectOption"/>
+    <h1>HEALTH PREDICTIVE QUESTIONAIRE</h1>
+    <answer-option v-for="section in sections" :section="section" :key="section.name" @optionSelected="selectOption"/>
     <div class="submit">
       <button @click="submit" :disabled="submitDisabled">Submit</button>
       <p v-if="submitDisabled && !answersPosted">Select all the sections before pressing submit</p>
@@ -23,20 +23,20 @@ export default {
   data: () => {
     return {
       sections: [
-        'Milk/Cheese',
-        'Yoghurt/Kefir (fermented milk products)',
-        'Red/Processed Meat',
-        'Tea/Coffee',
-        'Sweetened Beverages',
-        'Fruits',
-        'Vegetables',
-        'Whole-grain',
-        'Fish',
-        'Refined Cereals',
-        'Poultry',
-        'Legumes',
-        'Nuts/Seeds',
-        'Eggs',
+        {name: 'Milk/Cheese', image: 'milk.png'},
+        {name: 'Yoghurt/Kefir', image: 'milk.png'},
+        {name: 'Red/Processed Meat', image: 'beefmeat.png'},
+        {name: 'Tea/Coffee', image: 'coffeecup.png'},
+        {name: 'Sweetened Beverages', image: 'milk.png'},
+        {name: 'Fruits', image: 'milk.png'},
+        {name: 'Vegetables', image: 'broccoli.png'},
+        {name: 'Whole-grain', image: 'milk.png'},
+        {name: 'Fish', image: 'milk.png'},
+        {name: 'Refined Cereals', image: 'milk.png'},
+        {name: 'Poultry', image: 'milk.png'},
+        {name: 'Legumes', image: 'milk.png'},
+        {name: 'Nuts/Seeds', image: 'milk.png'},
+        {name: 'Eggs', image: 'milk.png'}
       ],
       answers: []
     }
@@ -63,6 +63,9 @@ export default {
 
 h1 {
   color: $color;
+  line-height: 54px;
+  font-family: Roboto;
+  font-size: 32px;
 }
 
 </style>

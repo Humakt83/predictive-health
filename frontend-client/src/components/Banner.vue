@@ -16,7 +16,7 @@ export default {
 @import "../_variables.scss";
 
 .banner {
-  background-image: url('../assets/BG.jpg');
+  background-image: url('../images/BG.jpg');
   background-size: 100vw 60vh;
   height: 60vh;
   width: 100vw;
