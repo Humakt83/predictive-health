@@ -3,7 +3,7 @@
     <h1>HEALTH PREDICTIVE QUESTIONAIRE</h1>
     <answer-option v-for="section in sections" :section="section" :key="section.name" @optionSelected="selectOption"/>
     <div class="submit">
-      <button @click="submit" :disabled="submitDisabled">Submit</button>
+      <button @click="submit" :disabled="submitDisabled">SUBMIT</button>
       <p v-if="submitDisabled && !answersPosted">Select all the sections before pressing submit</p>
       <p v-if="answersPosted">You have successfully sent the answers.</p>
     </div>
@@ -66,6 +66,24 @@ h1 {
   line-height: 54px;
   font-family: Roboto;
   font-size: 32px;
+}
+
+.submit {
+  button {
+    border-radius: 100px;
+    background-color: $color2;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 26px;
+    padding: 25px 75px;
+    color: $color-background;
+    border: none;
+    cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: $color3;
+    }
+  }
 }
 
 </style>

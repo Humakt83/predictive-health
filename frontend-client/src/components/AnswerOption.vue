@@ -85,7 +85,7 @@ export default {
     cursor: pointer;
     .check {
       font-size: 2rem;
-      color: #DADADA;
+      color: $color3;
       position: absolute;
       z-index: 3;
       left: 50%;
@@ -120,7 +120,7 @@ export default {
       height: 80px;
       left: 50%;
       transform: translate(-50%, -25%);
-      border-left: 3px solid #DADADA;
+      border-left: 3px solid $color3;
     }
   }
   &:after {
@@ -129,7 +129,7 @@ export default {
     width: 52vw;
     bottom: -20%;
     transform: translate(24vw, 0);
-    border-bottom: 3px solid #DADADA;
+    border-bottom: 3px solid $color3;
   }
 }
 </style>
