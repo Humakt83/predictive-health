@@ -1,33 +1,33 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <banner />
+    <home/>
   </div>
 </template>
+<script>
+// @ is an alias to /src
+import Home from '@/components/Home';
+import Banner from '@/components/Banner';
 
+export default {
+  name: 'app',
+  components: {
+    Home,
+    Banner
+  }
+};
+</script>
 <style lang="scss">
+
+@import "./_variables.scss";
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin: auto;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  background: $color-background;
 }
 </style>
