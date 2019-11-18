@@ -16,7 +16,7 @@ export default new Vuex.Store({
   actions: {
     submitAnswers: async (context, answerData) => {
       const transformedAnswerData = answerData.map((answer) => {
-        const convertOptions = {Daily: 1, Weekly: 2, Monthly: 3, Never: 4};
+        const convertOptions = {Daily: 4, Weekly: 3, Monthly: 2, Never: 1};
         return { name: answer.name, optionValue: convertOptions[answer.optionValue]};
       });
       const response = await createUser();
