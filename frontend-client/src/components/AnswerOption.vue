@@ -1,9 +1,14 @@
 <template>
   <div class="section-container">
-    <h2>{{section}}</h2>
+    <div class="section-title">
+      <img :src="'assets/' + section.image" />
+      <h2>{{section.name.toUpperCase()}}</h2>
+    </div>
     <div class="options-container">
       <div class="option" :class="{'option--selected': option === selectedOption}" v-for="option in options" v-bind:key="option" @click="selectOption(option)">
-        <span>{{ option }}</span>
+        <p>{{ option }}</p>
+        <font-awesome-icon class="check" icon="check-circle" v-if="option !== options[3]"/>
+        <font-awesome-icon class="check check-never" icon="times-circle" v-else />
       </div>
     </div>
   </div>
@@ -15,7 +20,7 @@ export default {
   name: 'answer-option',
   props: {
     section: {
-      type: String,
+      type: Object,
     }
   },
   data: () => {
@@ -27,7 +32,7 @@ export default {
   methods: {
     selectOption(option) {
       this.selectedOption = option;
-      this.$emit('optionSelected', this.section, this.selectedOption);
+      this.$emit('optionSelected', this.section.name, this.selectedOption);
     }
   }
 }
@@ -37,74 +42,94 @@ export default {
 
 @import "../_variables.scss";
 
-$option-width: 50px;
-
 .section-container {
-  max-width: 1200px;
   margin: auto;
+  height: 400px;
 }
 
-h2 {
-  color: $color;
-  background-color: $color2;
-  padding: 0.5rem;
-  border-radius: 90px;
-  width: 200px;
-  margin: auto;
-  margin-bottom: -5px;
-  font-size: 1.2rem;
+.section-title {
+  display: grid;
+  height: 150px;
+  grid-template-columns: 50vw 50vw;
+  h2 {
+    color: $color2;
+    font-size: 26px;
+    line-height: 35px;
+    font-weight: 800;
+    justify-self: start;
+    padding-left: 1rem;
+    align-self: end;
+  }
+  img {
+    justify-self: end;
+    max-width: 146px;
+    max-height: 147px;
+    padding-right:1rem;
+    align-self: end;
+  }
 }
 
 .options-container {
-  display: flex;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(4, 25vw);
   color: $color;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 1rem;
-  &:before {
-    content: '';
-    background-color: $color3;
-    position: absolute;
-    height: $option-width / 5;
-    width: 100%;
-    z-index: 0;
-    margin-top: $option-width / 3;
-  }
-  &:after {
-    content: '';
-    background-color: $color3;
-    position: absolute;
-    height: $option-width / 5;
-    width: 100%;
-    z-index: 0;
-    margin-top: $option-width - ($option-width / 7);
-  }
+  
   .option {
-    z-index: 5;
-    font-size: 1rem;
-    border-radius: 90px;
-    font-weight: bolder;
-    padding: 0 1rem;
-    background-color: $color3;
-    width: $option-width;
+    justify-self: stretch;
+    font-family: Montserrat;
+    line-height: 35px;
+    font-weight: 500;
+    font-size: 22px;
     position: relative;
     cursor: pointer;
-    &:before {
-      content: '';
-      display: block;
-      padding-top: $option-width / 1.75;
+    .check {
+      font-size: 2rem;
+      color: $color3;
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      transform: translate(-50%, 0);
+      background-color: $color-background;
     }
-    &:after {
-      content: '';
-      display: block;
-      padding-bottom: $option-width / 1.75;
+    &:first-child {
+      justify-self: end;
+    }
+    &:last-child {
+      justify-self: start;
     }
     &:hover {
-      background-color: $color3;
+      .check {
+        color: $color2;
+      }
+      .check-never {
+        color: #FFE751;
+      }
     }
     &.option--selected {
-      background-color: $color2;
+      .check {
+        color: $color2;
+      }
+      .check-never {
+        color: #FFE751;
+      }
     }
+    &:after {
+      position: absolute;
+      content: '';
+      height: 80px;
+      left: 50%;
+      transform: translate(-50%, -25%);
+      border-left: 3px solid $color3;
+    }
+  }
+  &:after {
+    position: absolute;
+    content: '';
+    width: 52vw;
+    bottom: -20%;
+    transform: translate(24vw, 0);
+    border-bottom: 3px solid $color3;
   }
 }
 </style>
