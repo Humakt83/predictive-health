@@ -1,5 +1,13 @@
 $color: #748A9D;
 $color2: #4BD37B;
 $color3: #DADADA;
+$color4: #FFE751;
 
-$color-background: #FFFFFF; 
+$color-background: #FFFFFF;
+
+@mixin color-mixin($name, $from, $to) {
+  @keyframes #{$name} {
+    0% {color: $from}
+    100% {color: $to}
+  }
+}

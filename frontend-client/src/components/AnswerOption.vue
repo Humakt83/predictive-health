@@ -84,13 +84,13 @@ export default {
     position: relative;
     cursor: pointer;
     .check {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: $color3;
       position: absolute;
       z-index: 3;
       left: 50%;
       transform: translate(-50%, 0);
-      background-color: $color-background;
+      background-color: $color-background;      
     }
     &:first-child {
       justify-self: end;
@@ -100,18 +100,22 @@ export default {
     }
     &:hover {
       .check {
+        @include color-mixin(to-selected, $color3, $color2);
+        animation: to-selected cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s;
         color: $color2;
       }
       .check-never {
-        color: #FFE751;
+        @include color-mixin(to-selected-x, $color3, $color4);
+        animation: to-selected-x cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s;
+        color: $color4;
       }
     }
     &.option--selected {
-      .check {
+      .check {       
         color: $color2;
       }
       .check-never {
-        color: #FFE751;
+        color: $color4;
       }
     }
     &:after {
