@@ -1,4 +1,6 @@
 from datetime import datetime
+from random import randrange
+from numpy import log as ln
 import json
 from bson import ObjectId
 from flask import Flask, g, request, redirect, url_for, jsonify, Response, abort
@@ -17,6 +19,17 @@ class JSONEncoder(json.JSONEncoder):
         if isinstance(o, ObjectId):
             return str(o)
         return json.JSONEncoder.default(self, o)
+        
+def find(json_object, name):
+    #for dict in json_object['answers']:
+    #    if dict['name'] == name:
+    #        return dict['optionValue']
+    return [obj for obj in json_object['answers'] if obj['name']==name][0]['optionValue']
+    
+# Returns true when factor > 0.5
+def Logit(factor):
+    return bool(ln(factor / (1 - factor)) > 0.0)
+
 # Get all users
 @app.route("/users")
 def users():
@@ -78,9 +91,37 @@ def create_poll(user_id):
 #@login_required
 def user_prediction(user_id):
     all_poll = mongo.db.poll
-    poll = all_poll.find_one({'user_id': ObjectId(user_id) })
+    poll = all_poll.find_one({'user': user_id })
+
+    Random = randrange(4)
+
+    Yogurt_Kefir = find(poll, 'Yoghurt/Kefir')
+    SweetenedBeverages = find(poll, 'Sweetened Beverages')
+    Fruits = find(poll, 'Fruits')
+    RefinedCerials = find(poll, 'Refined Cereals')
+    Milk_Cheese = find(poll, 'Milk/Cheese')
+    RedProcessedMeat = find(poll, 'Red/Processed Meat')
+    Tea_Coffee = find(poll, 'Tea/Coffee')
+    WholeGrain = find(poll, 'Whole-grain')
+    Eggs = find(poll, 'Eggs')
+    Vegetables = find(poll, 'Vegetables')
+    Fish = find(poll, 'Fish')
+    Nuts = find(poll, 'Nuts/Seeds')
+    Legumes = find(poll, 'Legumes')
+    
+    t2d = -509.30+44.37*Yogurt_Kefir+44.14*SweetenedBeverages+44.36*Fruits+44.24*RefinedCerials+44.30*Random
+    ibd = -988.890+42.34*Milk_Cheese+42.11*Yogurt_Kefir+42.26*RedProcessedMeat+42.17*Tea_Coffee+41.86*SweetenedBeverages+41.88*WholeGrain+41.76*RefinedCerials+42.26*Eggs+42.09 * Random
+    ha = -246.05+44.75*RedProcessedMeat+44.73*Eggs+44.79*Random
+    cc = -509.76+44.41*Yogurt_Kefir+44.38*RedProcessedMeat+44.26*SweetenedBeverages+44.25*RefinedCerials+44.35*Random
+
+    data = {}
+    data['t2d'] = Logit(t2d)
+    data['ibd'] = Logit(ibd)
+    data['ha'] = Logit(ha)
+    data['cc'] = Logit(cc)
+    
     if user is not None:
-        return JSONEncoder().encode(poll)
+        return json.dumps(data)
     else:
         abort(404, 'user not found')
 
