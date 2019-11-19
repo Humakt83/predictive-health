@@ -6,11 +6,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    answersPosted: false
+    answersPosted: false,
+    userId: undefined
   },
   mutations: {
     setAnswersToPosted(state) {
       state.answersPosted = true;
+    },
+    setUserId(state, userId) {
+      state.userId = userId;
     }
   },
   actions: {
@@ -23,6 +27,7 @@ export default new Vuex.Store({
       const userId = response.data._id;
       await postAnswers(response.data._id, {user: userId, answers: transformedAnswerData});
       context.commit('setAnswersToPosted');
+      context.commit('setUserId', userId);
     }
   },
 })

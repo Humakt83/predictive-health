@@ -5,7 +5,10 @@
     <div class="submit">
       <button @click="submit" :disabled="submitDisabled">SUBMIT</button>
       <p v-if="submitDisabled && !answersPosted">Select all the sections before pressing submit</p>
-      <p v-if="answersPosted">You have successfully sent the answers.</p>
+      <p v-if="answersPosted">You have successfully sent the answers.
+        Generated USER ID:
+        <span class="userid">{{userId}}</span>
+      </p>
     </div>
   </div>
 </template>
@@ -45,7 +48,7 @@ export default {
     submitDisabled() {
       return this.answers.length < this.sections.length || this.answersPosted;
     },
-    ...mapState(['answersPosted'])
+    ...mapState(['answersPosted', 'userId'])
   },
   methods: {
     submit() {
@@ -83,6 +86,16 @@ h1 {
       cursor: not-allowed;
       background-color: $color3;
     }
+  }
+}
+
+p {
+  font-size: 20px;
+  .userid {
+    font-size: 26px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: $color2;
   }
 }
 
