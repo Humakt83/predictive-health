@@ -19,15 +19,13 @@ export default new Vuex.Store({
   },
   actions: {
     getPrediction: async (context, userId) => {
-      if (!userId) {
-        await getPrediction(userId);
-      }
+      const result = await getPrediction(userId);
       const prediction = [
-        {name: 'Type 2 Diabetes', probability: 20},
-        {name: 'IBD', probability: 30},
-        {name: 'Hearth Attack', probability: 50},
-        {name: 'Prostate Cancer', probability: 75},
-        {name: 'Colorectal Cancer', probability: 60}
+        {name: 'Type 2 Diabetes', probability: result.data.t2d},
+        {name: 'IBD', probability: result.data.ibd},
+        {name: 'Hearth Attack', probability: result.data.ha},
+        {name: 'Prostate Cancer', probability: result.data.pc},
+        {name: 'Colorectal Cancer', probability: result.data.cc}
       ];
       context.commit('setPrediction', prediction);
     },
