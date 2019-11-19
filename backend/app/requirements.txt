@@ -2,3 +2,4 @@ Flask-Cors
 Flask-RESTful
 Flask-PyMongo
 PyJWT
+NumPy
