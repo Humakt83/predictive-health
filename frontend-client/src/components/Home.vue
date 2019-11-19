@@ -39,7 +39,7 @@ export default {
         {name: 'Poultry', image: 'milk.png'},
         {name: 'Legumes', image: 'milk.png'},
         {name: 'Nuts/Seeds', image: 'milk.png'},
-        {name: 'Eggs', image: 'milk.png'}
+        {name: 'Eggs', image: 'egg.png'}
       ],
       answers: []
     }
