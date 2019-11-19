@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>PREDICTIVE HEALTH - DOCTOR CLIENT</h1>
+    <h1>HEALTH PREDICTION</h1>
     <form v-on:submit.prevent @submit="getPrediction($event)">
       <label for="userInput">User Id</label>
       <input name="userInput" type="text" placeholder="Insert User Id here" v-model="userId" />
@@ -40,8 +40,11 @@ export default {
 <style scoped lang="scss">
 @import '../_variables.scss';
 
-h1 {
-  color: $color;
+.home {
+  margin-top: 45vh;
+  h1 {
+    color: $color;
+  }
 }
 
 </style>
