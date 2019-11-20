@@ -10,7 +10,12 @@ const getPoll = (user) => {
   return axios.get(`${BASE_HREF}user/${user}/poll`);
 }
 
+const getUsers = () => {
+  return axios.get(`${BASE_HREF}users`)
+}
+
 export {
   getPrediction,
-  getPoll
+  getPoll,
+  getUsers
 }
