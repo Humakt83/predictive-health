@@ -28,7 +28,7 @@ def find(json_object, name):
     
 # Returns true when factor > 0.5
 def Logit(factor):
-    return bool(ln(factor / (1 - factor)) > 0.0)
+    return bool(factor > 0.5)
 
 # Get all users
 @app.route("/users")
@@ -108,16 +108,19 @@ def user_prediction(user_id):
     Fish = find(poll, 'Fish')
     Nuts = find(poll, 'Nuts/Seeds')
     Legumes = find(poll, 'Legumes')
+    Poultry = find(poll, 'Poyltry)
     
     t2d = -509.30+44.37*Yogurt_Kefir+44.14*SweetenedBeverages+44.36*Fruits+44.24*RefinedCerials+44.30*Random
     ibd = -988.890+42.34*Milk_Cheese+42.11*Yogurt_Kefir+42.26*RedProcessedMeat+42.17*Tea_Coffee+41.86*SweetenedBeverages+41.88*WholeGrain+41.76*RefinedCerials+42.26*Eggs+42.09 * Random
     ha = -246.05+44.75*RedProcessedMeat+44.73*Eggs+44.79*Random
+    pc = -375.43379+44.10397*Milk_cheese+0.01542*Yogurt_Kefir+44.35269*RedProcessedMeat+44.060337*Poultry+44.20590*Random
     cc = -509.76+44.41*Yogurt_Kefir+44.38*RedProcessedMeat+44.26*SweetenedBeverages+44.25*RefinedCerials+44.35*Random
 
     data = {}
     data['t2d'] = Logit(t2d)
     data['ibd'] = Logit(ibd)
     data['ha'] = Logit(ha)
+    data['pc'] = Logit(pc)
     data['cc'] = Logit(cc)
     
     if user is not None:
