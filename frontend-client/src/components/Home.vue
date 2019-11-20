@@ -31,15 +31,15 @@ export default {
         {name: 'Red/Processed Meat', image: 'beefmeat.png'},
         {name: 'Tea/Coffee', image: 'coffeecup.png'},
         {name: 'Sweetened Beverages', image: 'milk.png'},
-        {name: 'Fruits', image: 'milk.png'},
+        {name: 'Fruits', image: 'fruit.png'},
         {name: 'Vegetables', image: 'broccoli.png'},
         {name: 'Whole-grain', image: 'milk.png'},
-        {name: 'Fish', image: 'milk.png'},
+        {name: 'Fish', image: 'fish.png'},
         {name: 'Refined Cereals', image: 'milk.png'},
         {name: 'Poultry', image: 'milk.png'},
-        {name: 'Legumes', image: 'milk.png'},
-        {name: 'Nuts/Seeds', image: 'milk.png'},
-        {name: 'Eggs', image: 'egg.png'}
+        {name: 'Legumes', image: 'beans.png'},
+        {name: 'Nuts/Seeds', image: 'cashew.png'},
+        {name: 'Eggs', image: 'eggs.png'}
       ],
       answers: []
     }
