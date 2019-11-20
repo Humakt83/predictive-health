@@ -4,9 +4,6 @@
     <p v-for="disease in prediction" :key="disease.name">
       {{ disease.name }} {{ disease.probability}} %
     </p>
-    <p>
-      {{ JSON.stringify(poll) }}
-    </p>
   </div>
 </template>
 
@@ -15,7 +12,7 @@ import {mapState} from 'vuex';
 export default {
   name: 'prediction-results',
   computed: {
-    ...mapState(['prediction', 'poll'])
+    ...mapState(['prediction'])
   }
 }
 </script>
@@ -25,9 +22,8 @@ export default {
 @import "../_variables.scss";
 
 .section-container {
-  justify-self: start;
   padding-left: 3rem;
-  text-align: left;
+  text-align: center;
   border-left: 3px solid $color;
 }
 
