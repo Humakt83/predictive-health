@@ -20,17 +20,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import './_variables.scss';
+
 body {
   overflow-x: hidden;
   width: 100vw;
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $color;  
   margin: auto;
   width: 100vw;
 }
