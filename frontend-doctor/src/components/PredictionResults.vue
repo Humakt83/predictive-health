@@ -46,6 +46,7 @@ export default {
     }
     .disease-value {
       display: inline;
+      font-size: 28px;
       font-weight: 800;
       margin-left: 2rem;
     }
