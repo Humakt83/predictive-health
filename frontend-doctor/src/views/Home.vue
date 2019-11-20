@@ -1,22 +1,22 @@
 <template>
   <div class="home">
     <h1>HEALTH PREDICTION</h1>
-    <form v-on:submit.prevent @submit="getPrediction($event)">
-      <label for="userInput">User Id</label>
-      <input name="userInput" type="text" placeholder="Insert User Id here" v-model="userId" />
-      <input type="submit" :disabled="submitDisabled" text="Get Prediction"/>
-    </form>
-    <prediction-results />
+    <div class="container">
+      <users />
+      <prediction-results />
+    </div>
   </div>
 </template>
 
 <script>
 import PredictionResults from '@/components/PredictionResults';
+import Users from '@/components/Users';
 
 export default {
   name: 'home',
   components: {
-    PredictionResults
+    PredictionResults,
+    Users,
   },
   data: () => {
     return {
@@ -28,13 +28,9 @@ export default {
       return !this.userId || this.userId.trim().length < 1;
     }
   },
-  methods: {
-    getPrediction(event) {
-      event.preventDefault();
-      this.$store.dispatch('getPrediction', this.userId);
-      this.$store.dispatch('getPoll', this.userId);
-    },
-  }
+  created() {
+    this.$store.dispatch('getUsers');
+  },
 }
 </script>
 <style scoped lang="scss">
@@ -42,6 +38,11 @@ export default {
 
 .home {
   margin-top: 45vh;
+  .container {
+    display: grid;
+    grid-template-columns: 30vw auto;
+  }
+  
   h1 {
     color: $color;
   }

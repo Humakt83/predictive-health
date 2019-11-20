@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {getPrediction, getPoll} from '@/api/api';
+import {getPrediction, getPoll, getUsers} from '@/api/api';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     prediction: undefined,
-    poll: undefined
+    poll: undefined,
+    users: []
   },
   mutations: {
     setPrediction(state, prediction) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     setPollAnswers(state, poll) {
       state.poll = poll;
+    },
+    setUsers(state, users) {
+      state.users = users.map(user => JSON.parse(user));
     }
   },
   actions: {
@@ -32,6 +36,10 @@ export default new Vuex.Store({
     getPoll: async (context, userId) => {
       const poll = await getPoll(userId);
       context.commit('setPollAnswers', poll.data);
+    },
+    getUsers: async(context) => {
+      const result = await getUsers();
+      context.commit('setUsers', result.data);
     }
   },
 })
