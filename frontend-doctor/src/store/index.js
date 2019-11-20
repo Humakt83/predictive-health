@@ -22,7 +22,7 @@ export default new Vuex.Store({
       });
     },
     setUsers(state, users) {
-      state.users = users.map(user => JSON.parse(user));
+      state.users = users.map(user => JSON.parse(user)).reverse();
     }
   },
   actions: {
